@@ -16,26 +16,14 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-conventional": "^8.2.0",
+    "commitlint-config-nomad": "git+ssh://git@ship.nomadinteractive.co:nomad-interactive/commitlint-config-nomad.git",
     "husky": "^3.0.9",
     "nomad-codecheck": "git+ssh://git@ship.nomadinteractive.co:nomad-interactive/nomad-codecheck.git"
   },
   "commitlint": {
     "extends": [
-      "@commitlint/config-conventional"
-    ],
-    "rules": {
-      "type-enum": [
-        2,
-        "always",
-        [
-          "feat",
-          "fix",
-          "cont",
-          "chore"
-        ]
-      ]
-    }
+      "nomad"
+    ]
   },
   "husky": {
     "hooks": {
