@@ -6,11 +6,41 @@
   "main": "test.js",
   "scripts": {
     "start": "node run.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check": "nomad-codecheck ./",
+    "clean": "npm run check"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "puppeteer": "^1.19.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "husky": "^3.0.9",
+    "nomad-codecheck": "git+ssh://git@ship.nomadinteractive.co:nomad-interactive/nomad-codecheck.git"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "type-enum": [
+        2,
+        "always",
+        [
+          "feat",
+          "fix",
+          "cont",
+          "chore"
+        ]
+      ]
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run clean",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }
