@@ -13,7 +13,8 @@ pageFilePath = path.join(rootPath, '/', 'pages.js')
 resolutionsFilePath = path.join(rootPath, '/', 'resolutions.js')
 
 const pages = require(pageFilePath);
-const resolutions = require(resolutionsFilePath);
+const resolutionsModule = require(resolutionsFilePath);
+const resolutions = typeof resolutionsModule === 'function' ? resolutionsModule(puppeteer) : resolutionsModule;
 
 let page = {};
 let resolution = {};
