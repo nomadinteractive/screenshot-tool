@@ -21,7 +21,7 @@ let resolution = {};
 
 let sessionId = (new Date()).toISOString().substr(0,19).replace(/\:/g, '');
 if (process.argv.slice(2).length > 0) sessionId += "-" + process.argv.slice(2)[0];
-const sessionDir = path.join(__dirname, 'screenshots', sessionId);
+const sessionDir = path.join(rootPath, '/', 'screenshots', sessionId);
 if (!fs.existsSync(sessionDir)){ fs.mkdirSync(sessionDir, { recursive: true }); }
 console.log("\n@@@  Screenshot Session Name " + sessionId + "\n@@@  (Path: " + sessionDir + ")\n");
 
