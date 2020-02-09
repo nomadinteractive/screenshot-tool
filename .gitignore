@@ -2,3 +2,5 @@ node_modules
 .vscode
 ~$*
 screenshots
+pages.js
+resolutions.js
