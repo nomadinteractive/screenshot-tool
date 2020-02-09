@@ -1,28 +1,31 @@
 {
-  "name": "ss-tool",
-  "private": true,
+  "name": "@nomadinteractive/screenshot-tool",
   "version": "1.0.0",
-  "description": "",
-  "main": "test.js",
+  "description": "Screenshot automation tool using puppeteer",
+  "main": "run.js",
   "scripts": {
     "start": "node run.js",
     "check": "nomad-codecheck ./",
     "clean": "npm run check"
   },
-  "author": "",
-  "license": "ISC",
+  "bin": {
+    "ss": "./run.js"
+  },
+  "author": "Nomad Interactive <hello@nomadinteractive.co>",
+  "license": "MIT",
+  "repository": "github:nomadinteractive/screenshot-tool",
   "dependencies": {
     "puppeteer": "^1.19.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
-    "commitlint-config-nomad": "git+ssh://git@ship.nomadinteractive.co:nomad-interactive/commitlint-config-nomad.git",
+    "@nomadinteractive/commitlint-config": "1.0.3",
     "husky": "^3.0.9",
-    "nomad-codecheck": "git+ssh://git@ship.nomadinteractive.co:nomad-interactive/nomad-codecheck.git"
+    "@nomadinteractive/nomad-codecheck": "1.0.37"
   },
   "commitlint": {
     "extends": [
-      "nomad"
+      "@nomadinteractive/commitlint-config"
     ]
   },
   "husky": {
