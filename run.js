@@ -1,16 +1,27 @@
+#!/usr/bin/env node
+
 const puppeteer = require('puppeteer');
 const path = require('path');
 const fs = require('fs');
 
-const pages = require('./pages');
-const resolutions = require('./resolutions');
+let rootPath = process.argv[2] || './'
+rootPath = rootPath.replace(/^\/+|\/+$/g, '')
+rootPath = path.join(process.cwd(), rootPath)
+// console.log(rootPath)
+
+pageFilePath = path.join(rootPath, '/', 'pages.js')
+resolutionsFilePath = path.join(rootPath, '/', 'resolutions.js')
+
+const pages = require(pageFilePath);
+const resolutionsModule = require(resolutionsFilePath);
+const resolutions = typeof resolutionsModule === 'function' ? resolutionsModule(puppeteer) : resolutionsModule;
 
 let page = {};
 let resolution = {};
 
 let sessionId = (new Date()).toISOString().substr(0,19).replace(/\:/g, '');
 if (process.argv.slice(2).length > 0) sessionId += "-" + process.argv.slice(2)[0];
-const sessionDir = path.join(__dirname, 'screenshots', sessionId);
+const sessionDir = path.join(rootPath, '/', 'screenshots', sessionId);
 if (!fs.existsSync(sessionDir)){ fs.mkdirSync(sessionDir, { recursive: true }); }
 console.log("\n@@@  Screenshot Session Name " + sessionId + "\n@@@  (Path: " + sessionDir + ")\n");
 

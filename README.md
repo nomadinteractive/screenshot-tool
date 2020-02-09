@@ -17,11 +17,10 @@ module.exports = [
 ];
 ```
 
-and list of resolutions.js you want the pages to be captured, similar to:
+and list of resolutions.js you want for the pages to be captured. The module should export either a simple array or a constructor method with accepting the pupeteer instance as single parameter and return the list of resolutions. Example:
 
 ```
-const puppeteer = require('puppeteer');
-module.exports = [
+module.exports = (puppeteer) => [
 	{ name: 'Desktop', width: 1600, height: 0 },
 	{ name: 'Mobile', emulate: puppeteer.devices['iPhone X'] }
 ];
