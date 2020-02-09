@@ -4,8 +4,16 @@ const puppeteer = require('puppeteer');
 const path = require('path');
 const fs = require('fs');
 
-const pages = require('./pages');
-const resolutions = require('./resolutions');
+let rootPath = process.argv[2] || './'
+rootPath = rootPath.replace(/^\/+|\/+$/g, '')
+rootPath = path.join(process.cwd(), rootPath)
+// console.log(rootPath)
+
+pageFilePath = path.join(rootPath, '/', 'pages.js')
+resolutionsFilePath = path.join(rootPath, '/', 'resolutions.js')
+
+const pages = require(pageFilePath);
+const resolutions = require(resolutionsFilePath);
 
 let page = {};
 let resolution = {};
